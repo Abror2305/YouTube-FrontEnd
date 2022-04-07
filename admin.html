@@ -11,6 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/material-design-iconic-font.css">
     <link rel="stylesheet" href="./css/material-design-iconic-font.min.css">
+    <script >
+        const token = window.localStorage.token
+        if(!token) window.location = "./register.html"
+    </script>
 </head>
 <body>
     <div class="container">
@@ -24,7 +28,7 @@
         <main class="main">
             <div class="wrapper">
                 <h1 class="title">Upload a video</h1>
-                <form action="#" class="site-form">
+                <form action="#" id="upload" class="site-form">
                     <label>
                         <input type="text" id="videoInput" placeholder="video title" required>
                     </label>
@@ -48,6 +52,7 @@
             </div>
         </main>
     </div>
-
+    <script src="./js/util.js"></script>
+    <script src="./js/admin.js"></script>
 </body>
 </html>

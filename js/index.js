@@ -11,10 +11,11 @@ const searchInput = document.querySelector(".search-input")
 const microphone = document.querySelector("#microphone")
 
 window.addEventListener("DOMContentLoaded",async () => {
+
     let users = await fetch(host + '/info')
-    users = await users.json()
-    renderUsers(users.users)
-    renderVideos()
+        users = await users.json()
+        renderUsers(users.users)
+        renderVideos()
     searchBox.onsubmit = event => {
         event.preventDefault()
         searchInput.value.trim()
@@ -44,9 +45,20 @@ window.addEventListener("DOMContentLoaded",async () => {
         }
         window.location = "./admin.html"
     }
+    setInterval(async () => {
+        let users = await fetch(host + '/info')
+        users = await users.json()
+        renderUsers(users.users)
+        renderVideos()
+    },5000)
 })
 
 function renderUsers(users) {
+    if(JSON.stringify(renderUsers.users) === JSON.stringify(users)) return
+
+    if(!renderUsers.users){
+        renderUsers.users = users
+    }
     console.log(users);
     if (users.length) {
         members.innerHTML = `<h1>YouTube Members</h1>
@@ -88,10 +100,17 @@ function main(e){
     renderVideos()
 }
 async function renderVideos(currentUser,search) {
-    videosList.innerHTML = ""
-    datalist.innerHTML = ""
     let videos = await fetch(host + `/search?`+(currentUser?"userId="+currentUser:"")+ (search?"search="+search: ""))
     videos = (await videos.json()).videos
+
+    if(JSON.stringify(renderVideos.videos) === JSON.stringify(videos)) return
+    if(!renderVideos.videos){
+        renderVideos.videos = videos
+    }
+
+    videosList.innerHTML = ""
+    datalist.innerHTML = ""
+    
     for (let video of videos) {
         if(!search) {
             let [option] = createElements("option")

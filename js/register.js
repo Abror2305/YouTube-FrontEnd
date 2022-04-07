@@ -21,7 +21,7 @@ submitButton.onsubmit = async event => {
 
     window.localStorage.setItem('token', response.token)
 
-    window.localStorage.setItem('avatar', cc)
+    window.localStorage.setItem('avatar', response.user.avatar)
 
     window.location = './index.html'
 }
