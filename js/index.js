@@ -59,7 +59,6 @@ function renderUsers(users) {
     if(!renderUsers.users){
         renderUsers.users = users
     }
-    console.log(users);
     if (users.length) {
         members.innerHTML = `<h1>YouTube Members</h1>
         <li class="channel active" onclick="main(this)">
@@ -91,6 +90,7 @@ function renderUsers(users) {
             }
         }
     }
+    renderUsers.users = users
 }
 
 function main(e){
@@ -134,6 +134,7 @@ async function renderVideos(currentUser,search) {
             </div>
         </li>
         `
+    renderVideos.videos = videos
     }
 }
 
