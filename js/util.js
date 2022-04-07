@@ -1,4 +1,4 @@
-const host = "http://192.168.1.7:5000"
+const host = "https://youtubeappp.herokuapp.com/"
 
 function createElements(...elements) {
     return elements.map(el => document.createElement(el))
